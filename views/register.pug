@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    link(rel='icon', href='/images/yb.png')
+    title اپلیکیشن چت دانشگاه علمی کاربردی - ثبت نام
+    // Bootstrap core CSS
+    link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', rel='stylesheet')
+    // Custom styles for this template
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body.text-center
+
+    form.form-signin(method='POST', action='/chat/register')
+      img.mb-4(src='/images/yb_256px.ico', alt='', width='200', height='200')
+      h1.h3.mb-3.font-weight-normal ثبت نام
+
+      label.sr-only(for='name')
+      input#inputName.form-control(type='text', name="name" placeholder=":نام و نام خانوادگی" required)
+
+      label.sr-only(for='Email')
+      input#inputEmail.form-control(type='email', name="Email" placeholder=":ایمیل" required)
+      
+      label.sr-only(for='inputPassword')
+      input#inputPassword.form-control(type='password', name="password" placeholder=":پسورد" required)
+
+      label.sr-only(for='inputPassword')
+      input#inputPassword.form-control.web(type='password', name="password_confirmation" placeholder=":تایید پسورد" required)
+
+      .checkbox.mb-3
+        label
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') ثبت نام
+      p © ۱۳۹۷ - ۱۳۹۸
+      

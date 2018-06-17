@@ -1,0 +1,23 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    link(rel='icon', href='/images/yb.png')
+    title ورود به چت
+    // Bootstrap core CSS
+    link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', rel='stylesheet')
+    // Custom styles for this template
+    link(href='https://getbootstrap.com/docs/4.1/examples/sign-in/signin.css', rel='stylesheet')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body.text-center
+    form.form-signin(method='POST', action='/chat/login')
+      img.mb-4(src='/images/yb.png', alt='', width='200 ', height='200')
+      h1.h3.mb-3.font-weight-normal ورود
+      label.sr-only(for='Email')
+      input#inputEmail.form-control(type='email', name="Email" placeholder=":ایمیل" required)
+      label.sr-only(for='inputPassword')
+      input#inputPassword.form-control(type='password', name="password" placeholder=":پسورد" required)
+      .checkbox.mb-3
+        label
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') ورود
+      p © ۱۳۹۷ - ۱۳۹۸

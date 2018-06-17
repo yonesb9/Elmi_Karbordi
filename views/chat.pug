@@ -1,0 +1,60 @@
+doctype html
+html(lang='en', ng-app='myApp')
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    title اپلیکیشن چت علمی کاربردی
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
+    link(href='/stylesheets/stylechat.css', type='text/css', rel='stylesheet')
+  body(cz-shortcut-listen='true', ng-controller='AppCtrl')
+    i#loader.fa.fa-spin.fa-refresh.fa-5x(style='display: none;')
+    .container.ng-scope
+      h2 اپلیکیشن چت علمی کاربردی
+      hr
+      .row
+        .col-lg-8
+          #userList.row(style='display: block;')
+            .col-sm-12.ng-scope(ng-repeat='user in users')
+              .row(ng-if='user')
+                .col-xs-2(ng-class="{'col-xs-push-10' : (user.username == curtrentUser)}")
+                  img.img-thumbnail.img-responsive.img-circle.pull-left(ng-src=' {{user.image}} ', ng-class-even='pull-right\
+                  ', ng-class-odd='pull-left ', style='width:70px; ')
+                .col-xs-10(ng-class="{'col-xs-pull-2' : (user.username == curtrentUser)}")
+                  .panel.panel-default
+                    .panel-body.ng-binding
+                      strong {{user.username}}
+                      |  : {{user.message}} 
+                      br
+                      span.label.label-info.ng-binding {{user.date | date: 'h:mma'}}
+          h2.text-center چیزی برای گفتن دارید؟
+          .input-group
+            input#data.form-control(type='text ', ng-model='message ',name="message", placeholder='لطفا پیغام خود را اینجا بنویسید')
+            span.input-group-btn
+              button#datasend.btn.btn-primary(type='button ', ng-click='doPost(message) ') ارسال
+          .clearfix
+        .col-lg-4
+          h4.input_txt پیوستن به چت
+          .form-group
+            label(for='exampleInputEmail1 ') :نام شما
+            input#join_room_email.form-control(type='text ', ng-model='join.username ', placeholder='نام خود را به انگلیسی وارد کنید')
+          .form-group
+            label(for='exampleInputEmail1 ') :آیدی چت
+            input#join_room_code.form-control(type='text ', ng-model='join.room ', placeholder='آیدی چت را به انگلیسی وارد کنید')
+          button#join.btn.btn-default(type='submit ', ng-click='joinRoom(join) ') ارسال
+          hr
+          h4.input_txt ساخت چت
+          .form-group
+            label(for='exampleInputEmail1 ') :نام شما
+            input#create_room_email.form-control(type='text ', ng-model='create.username ', placeholder='نام خود را به انگلیسی وارد کنید')
+          button#create.btn.btn-default(type='submit ', ng-click='createRoom(create) ' ) ارسال
+          button(onclick='replaceRelativeUrls(node, baseURI)') Try it
+          p#demo
+          .clearfix
+    script(src='/socket.io/socket.io.js ')
+    script(type='text/javascript ', src='/scripts/angular.min.js ')
+    script(type='text/javascript ', src='/scripts/app.js ')
+    script.
+      alert(window.location.protocol + "//" + window.location.host + "/" + window.location.pathname;);
+    
+
+    
