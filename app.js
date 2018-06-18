@@ -7,7 +7,6 @@ app.set('port', process.env.PORT || 80);
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var port = app.get('port');
-// server.js
 
 mongoose.connect('mongodb://localhost/elmikarbordi', function() {
     console.log('!connect to mongodb!');
@@ -31,10 +30,6 @@ app.use(express.static('public'));
 
 server.listen(port, function() {
     console.log("Server listening on localhost");
-});
-// chat code
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/index.html');
 });
 
 var usernames = {};
@@ -61,7 +56,7 @@ io.sockets.on('connection', function(socket) {
     socket.on('createroom', function(data) {
         var new_room = ("" + Math.random()).substring(2, 12)
         rooms.push(new_room);
-        socket.emit('updatechat', 'SERVER', 'چت شما آماده است ، فردی را با استفاده از این آیدی دعوت کنید:' + '  ' + new_room + '/user/:id/:type');
+        socket.emit('updatechat', 'SERVER', 'چت شما آماده است ، فردی را با استفاده از این آیدی دعوت کنید:' + '  ' + new_room);
         // socket.emit('updatechat', 'SERVER', window.location.href + new_room)
         socket.emit('roomcreated', data);
     });
@@ -78,8 +73,4 @@ io.sockets.on('connection', function(socket) {
             socket.leave(socket.room);
         }
     });
-});
-
-app.get('/user/:id/:type', function api(req, res) {
-    res.render('chat.pug');
 });
